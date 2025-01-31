@@ -16,13 +16,18 @@ done
 
 cat >"user-data.yaml" <<EOF
 #cloud-config
-hostname: $HOSTNAME
-users:
-  - name: $USERNAME
-    lock_passwd: false
-    passwd: $(openssl passwd -6 "$PASSWORD")
-    shell: /bin/bash
-    sudo: ALL=(ALL) NOPASSWD:ALL
+autoinstall:
+  version: 1
+  identity:
+    hostname: $HOSTNAME
+    username: $USERNAME
+    password: $(openssl passwd -6 "$PASSWORD")
+  user-data:
+    users:
+      - name: $USERNAME
+        lock_passwd: false
+        shell: /bin/bash
+        sudo: ALL=(ALL) NOPASSWD:ALL
 EOF
 
 echo "Cloud-Init configuration created successfully: user-data.yaml"
