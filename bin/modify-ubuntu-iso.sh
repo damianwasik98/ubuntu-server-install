@@ -34,17 +34,17 @@ MOUNT_DIR=$(mktemp -d)
 NEW_ISO_DIR=$(mktemp -d)
 
 cleanup() {
-  echo "Cleaning up temporary directories..."
-  if mountpoint -q "$MOUNT_DIR"; then
-    sudo umount "$MOUNT_DIR"
-  fi
-  rm -rf "$MOUNT_DIR" "$NEW_ISO_DIR"
+	echo "Cleaning up temporary directories..."
+	if mountpoint -q "$MOUNT_DIR"; then
+		umount "$MOUNT_DIR"
+	fi
+	rm -rf "$MOUNT_DIR" "$NEW_ISO_DIR"
 }
 
 trap cleanup EXIT
 
 echo "Mounting ISO image..."
-sudo mount -o loop "$INPUT_ISO" "$MOUNT_DIR"
+mount -o loop "$INPUT_ISO" "$MOUNT_DIR"
 
 echo "Copying ISO contents..."
 cp -r "$MOUNT_DIR"/* "$NEW_ISO_DIR/"
