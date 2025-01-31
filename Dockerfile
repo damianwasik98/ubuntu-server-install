@@ -7,8 +7,10 @@ RUN apk add --no-cache \
     util-linux \
     bash
 
-COPY ubuntu-installer.sh /usr/local/bin/ubuntu-installer
-RUN chmod +x /usr/local/bin/ubuntu-installer
+WORKDIR /app
 
-ENTRYPOINT ["ubuntu-installer"]
+COPY ./bin /app/bin
+RUN chmod +x /app/bin/*
+
+ENTRYPOINT ["bin/ubuntu-installer.sh"]
 
