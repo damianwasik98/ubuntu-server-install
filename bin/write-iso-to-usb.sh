@@ -16,7 +16,9 @@ list_devices() {
 
 prepare_device() {
   local device="$1"
-  $IS_MACOS && diskutil unmountDisk "$device"
+  if [ "$IS_MACOS" == true ]; then
+    diskutil unmountDisk "$device"
+  fi
 }
 
 write_iso_to_usb() {
