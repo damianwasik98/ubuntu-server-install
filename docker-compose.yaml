@@ -1,9 +1,0 @@
-services:
-  ubuntu-installer:
-    build: .
-    privileged: true
-    volumes:
-      - "/dev:/dev"
-    tty: true
-    stdin_open: true
-
