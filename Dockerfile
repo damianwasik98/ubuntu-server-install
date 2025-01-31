@@ -4,6 +4,7 @@ RUN apk add --no-cache \
     wget \
     coreutils \
     fzf \
+    xorriso \
     curl \
     openssl \
     util-linux \
