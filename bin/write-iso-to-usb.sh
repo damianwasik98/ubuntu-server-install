@@ -50,7 +50,8 @@ if [[ ! -f "$USER_CONFIG" ]]; then
 fi
 
 echo
-read -p "Are you sure you want to create a bootable USB on device $USB_DEVICE and write $ISO_FILE? (y/n) " CONFIRMATION
+printf "Are you sure you want to create a bootable USB on device:\n%s\nand write:\n%s?\n(y/n) " "$USB_DEVICE" "$ISO_FILE"
+read CONFIRMATION
 if [[ "$CONFIRMATION" != "y" ]]; then
   echo "Operation canceled."
   exit 1
@@ -60,6 +61,6 @@ echo "Preparing USB device..."
 prepare_device "$USB_DEVICE"
 
 echo "Writing ISO to USB..."
-#write_iso_to_usb "$ISO_FILE" "$USB_DEVICE"
+write_iso_to_usb "$ISO_FILE" "$USB_DEVICE"
 
 echo "Bootable USB created successfully!"
