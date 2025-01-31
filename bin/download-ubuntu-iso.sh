@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# This script downloads Ubuntu Server ISO image from Ubuntu releases page.
+# This script downloads Ubuntu Server ISO image from Ubuntu releases page into ubuntu-images directory.
 
 echo -e "Select architecture:\n1. amd64 (default)\n2. arm64"
 read -p "Choice (Enter for amd64): " ARCH_CHOICE
@@ -13,19 +13,20 @@ read -p "Enter Ubuntu Server version (default: $UBUNTU_VERSION): " CUSTOM_VERSIO
 [[ -n "$CUSTOM_VERSION" ]] && UBUNTU_VERSION="$CUSTOM_VERSION"
 
 if [[ -z "$UBUNTU_VERSION" ]]; then
-	echo "Failed to fetch the latest Ubuntu Server version."
-	exit 1
+  echo "Failed to fetch the latest Ubuntu Server version."
+  exit 1
 fi
 
 echo "Selected Ubuntu Server $UBUNTU_VERSION for $UBUNTU_ARCH"
 
 ISO_NAME="ubuntu-${UBUNTU_VERSION}-live-server-${UBUNTU_ARCH}.iso"
 ISO_URL="https://releases.ubuntu.com/${UBUNTU_VERSION}/${ISO_NAME}"
+UBUNTU_IMAGES_DIR="./ubuntu-images"
 
 echo "Downloading Ubuntu ISO..."
-wget -c "$ISO_URL" || {
-	echo "Failed to download Ubuntu ISO"
-	exit 1
+wget -P "$UBUNTU_IMAGES_DIR" -c "$ISO_URL" || {
+  echo "Failed to download Ubuntu ISO"
+  exit 1
 }
 
 echo "ISO downloaded successfully: $ISO_NAME"
