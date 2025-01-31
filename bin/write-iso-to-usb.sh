@@ -24,9 +24,9 @@ write_iso_to_usb() {
   local device="$2"
 
   if $IS_MACOS; then
-    sudo dd if="$iso" of="/dev/r${device#/dev/}" bs=1m
+    dd if="$iso" of="/dev/r${device#/dev/}" bs=1m
   else
-    sudo dd if="$iso" of="$device" bs=4M status=progress
+    dd if="$iso" of="$device" bs=4M status=progress
   fi
 }
 

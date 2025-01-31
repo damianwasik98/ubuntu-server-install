@@ -2,6 +2,8 @@ FROM alpine:latest
 
 RUN apk add --no-cache \
     wget \
+    coreutils \
+    fzf \
     curl \
     openssl \
     util-linux \
