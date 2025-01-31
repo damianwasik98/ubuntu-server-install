@@ -38,7 +38,7 @@ if [[ -z "$USB_DEVICE" ]]; then
   exit 1
 fi
 
-ISO_FILE=$(find . -maxdepth 1 -type f -name "*.iso" | fzf --prompt="Select ISO file: ")
+ISO_FILE=$(find ./ubuntu-images -maxdepth 1 -type f -name "*.iso" | fzf --prompt="Select ISO file: ")
 if [[ -z "$ISO_FILE" ]]; then
   echo "No ISO file selected. Exiting."
   exit 1
